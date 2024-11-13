@@ -1,0 +1,352 @@
+<body style="overflow-x: hidden">
+  <div class="row">
+    {% include 'adminheader.html' %}
+
+    <div class="col">
+      <nav
+        class="navbar bg-light sticky-top user-select-none"
+        style="height: 70px; padding-left: 0vh !important"
+      >
+        <div class="container-fluid">
+          <span class="h3 text-dark">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-cash-coin"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"
+              />
+              <path
+                d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"
+              />
+              <path
+                d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"
+              />
+              <path
+                d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"
+              />
+            </svg>
+            <span class="align-middle">Purchase</span>
+          </span>
+          <a
+            href="adminpurchaseview"
+            style="margin-right: -890px"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Search"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </a>
+          <a
+            href="adminpurchaselist"
+            style="margin-right: 50px"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Purchase List"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-files"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"
+              />
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+
+      <section class="vh-100 user-select-none">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col p-5">
+              <form
+                action=""
+                method="post"
+                enctype="multipart/form-data"
+                class="needs-validation"
+                novalidate
+              >
+                <!--<div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                          <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+                          <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                          </button>
+              
+                          <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                          </button>
+              
+                          <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-linkedin-in"></i>
+                          </button>
+                        </div>
+              
+                        <div class="divider d-flex align-items-center my-4">
+                          <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                        </div>-->
+                <p class="display-6 fw-bold mb-4 me-3">Purchase Product</p>
+                <!-- Select customer -->
+                <div class="form-outline form-floating mb-4">
+                  <select
+                    name="cid"
+                    id=""
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Customer</option>
+
+                    {% for row in data['cust']%}
+                    <option value="{{row['cust_id']}}">{{row['email']}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <!-- Select product -->
+                <div class="form-outline form-floating mb-4">
+                  <select
+                    name="product"
+                    id=""
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Product</option>
+
+                    {% for row in data['item']%}
+                    <option value="{{row['item_id']}}">
+                      {{row['item_name']}}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <!-- Item description -->
+                <div class="form-outline form-floating mb-4">
+                  <!-- <input type="text" id="form3Example3" name="desc"
+                                        class="form-control form-control-lg" placeholder="Enter a item description" required />
+                                    <label class="form-label" for="form3Example3">Item description</label> -->
+                  <textarea
+                    class="form-control"
+                    name="desc"
+                    placeholder="Leave a comment here"
+                    id="floatingTextarea2"
+                    style="height: 100px"
+                  ></textarea>
+                  <label for="floatingTextarea2">Item descriprtion</label>
+                  <div class="invalid-feedback">
+                    Please enter item description
+                  </div>
+                </div>
+                <!-- <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Comments</label>
+                                </div> -->
+
+                <!-- Item profit -->
+                <div class="row">
+                  <div class="form-outline form-floating mb-4 col">
+                    <input
+                      type="text"
+                      id="form3Example3"
+                      name="profit"
+                      class="form-control form-control-lg"
+                      placeholder="Enter a name"
+                      required
+                    />
+                    <label class="form-label px-4" for="form3Example3"
+                      >Item profit</label
+                    >
+                    <div class="invalid-feedback">Please enter item profit</div>
+                  </div>
+
+                  <!-- Cost price -->
+                  <div class="form-outline form-floating mb-4 col">
+                    <input
+                      type="text"
+                      id="form3Example3"
+                      name="cprice"
+                      class="form-control form-control-lg"
+                      placeholder="Enter description"
+                      required
+                    />
+                    <label class="form-label px-4" for="form3Example3"
+                      >Cost price</label
+                    >
+                    <div class="invalid-feedback">
+                      Please enter a cost price
+                    </div>
+                  </div>
+
+                  <!--<div class="d-flex justify-content-between align-items-center">-->
+                  <!-- Checkbox -->
+                  <!--<div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label class="form-check-label" for="form2Example3">
+                              Remember me
+                            </label>
+                          </div>
+                          <a href="#!" class="text-body">Forgot password?</a>-->
+                </div>
+
+                <div class="row">
+                  <!-- Selling price -->
+                  <!-- <div class="form-outline form-floating mb-4 col-3">
+                                        <input type="text" id="form3Example3" name="sprice"
+                                            class="form-control form-control-lg" placeholder="Enter a selling price"
+                                            required />
+                                        <label class="form-label px-4" for="form3Example3">Selling price</label>
+                                        <div class="invalid-feedback">Please enter selling price</div>
+                                    </div> -->
+
+                  <!-- Item image -->
+                  <div class="form-outline form-floating mb-4 col">
+                    <input
+                      type="file"
+                      id="form3Example3"
+                      name="image"
+                      class="form-control form-control-lg"
+                      placeholder="Enter a name"
+                      required
+                    />
+                    <label class="form-label px-4" for="form3Example3"
+                      >Item image</label
+                    >
+                    <div class="invalid-feedback">Please enter item image</div>
+                  </div>
+                </div>
+
+                <div class="text-center text-lg-start mt-4 pt-2 mb-5">
+                  <input
+                    type="submit"
+                    name="submit"
+                    class="btn btn-primary btn-lg w-100"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem"
+                    value="Purchase"
+                  />
+                  <!--<p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register"
+                              class="link-danger">Register</a></p>-->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!--<div
+                  class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">-->
+        <!-- Copyright -->
+        <!--<div class="text-white mb-3 mb-md-0">
+                    Copyright © 2020. All rights reserved.
+                  </div>-->
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <!--<div>
+                    <a href="#!" class="text-white me-4">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#!" class="text-white me-4">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#!" class="text-white me-4">
+                      <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#!" class="text-white">
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
+                  </div>-->
+        <!-- Right -->
+        <!--</div>-->
+      </section>
+
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          "use strict";
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll(".needs-validation");
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener(
+              "submit",
+              function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+
+                form.classList.add("was-validated");
+              },
+              false
+            );
+          });
+        })();
+
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+      </script>
+      <div class="p-lg-5">
+        <div class="table-responsive rounded">
+          {% for i in data['view'] %}
+          <table class="table table-striped table-sm">
+            <thead class="text-white bg-primary">
+              <!-- <th scope="col">Customer name</th> -->
+              <th scope="col">Sl no</th>
+              <th scope="col">Item name</th>
+              <th scope="col">Cost price</th>
+              <th scope="col">Profit percentage</th>
+              <th scope="col">Selling price</th>
+              <th scope="col">Item image</th>
+            </thead>
+
+            <tr>
+              <!-- <td>{{i['email']}}</td> -->
+              <td>{{loop.index}}</td>
+              <td>{{i['item_name']}}</td>
+              <td>₹ {{i['cost_price']}}</td>
+              <td>{{i['item_profit']}}%</td>
+              <td>₹ {{i['sell_price']}}</td>
+              <td><img width="73" height="68" src="/{{i['image']}}" /></td>
+            </tr>
+          </table>
+          <a class="btn btn-dark btn-md w-100" href="?id={{data['purcahse']}}"
+            >Complete Purchase</a
+          >
+        </div>
+        {% else %}
+        <div
+          class="text-muted position-absolute top-120 start-50 translate-middle"
+          style="margin-left: 150px"
+        >
+          <span>- Purchase List Is Empty! -</span>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% include 'adminfooter.html'%}
+</body>

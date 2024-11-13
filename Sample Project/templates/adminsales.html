@@ -1,0 +1,71 @@
+<body style="overflow-x: hidden">
+
+
+    <div class="row">
+
+        {% include 'adminheader.html' %}
+
+        <div class="col">
+            <nav class="navbar bg-light sticky-top user-select-none"
+                style="height: 70px; padding-left: 0vh !important;">
+                <div class="container-fluid">
+                    <span class="h3 text-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z" />
+                        </svg>
+                        <span class="align-middle">Sales</span>
+                    </span>
+                    <a href="adminsalesreport" class="text-primary" style="margin-right: 65px;" data-toggle="tooltip"
+                        data-placement="bottom" title="Print Report">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+                            <path
+                                d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z" />
+                            <path
+                                d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="p-lg-5">
+                <div class="table-responsive rounded">
+                    <table class="table table-striped table-sm">
+                        <thead class="text-white bg-primary">
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Cost Price</th>
+                            <th scope="col">Profit</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Date</th>
+                            <th></th>
+                        </thead>
+                        {% for r in data['view'] %}
+                        <tr>
+                            <td>{{r['cust_fname']}} {{r['cust_lname']}}</td>
+                            <td>{{r['item_name']}}</td>
+                            <td>₹ {{r['cost_price']}}</td>
+                            <td>{{r['item_profit']}}%</td>
+                            <td>₹ {{r['sell_price']}}</td>
+                            <td><img width="73" height="68" src="/{{r['image']}}"></td>
+                            <td>{{r['payment_date']}}</td>  
+                            <td>
+                                {% if r['c_status'] == 'paid' %}
+                                <a href="adminassign?omid={{r['cart_master_id']}}" class="btn btn-danger">Assign</a>
+                                {% else %}
+                                <span>{{r['c_status']}}</span>
+                                {% endif %}
+                            </td>                           
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

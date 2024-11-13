@@ -1,0 +1,121 @@
+{% include 'customerheader.html' %}
+
+<div class="container px-3 clearfix p-lg-5">
+    <!-- Shopping cart table -->
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="py-2">Shopping Cart</h2>
+                        </div>
+                        <div class="col-1">
+                            <a href="customerproduct" class="text-primary text"  data-toggle="tooltip"
+                            data-placement="bottom" title="Back to Shopping">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        {% if data['view'] %}
+                        {% for row in data['view'] %}
+                        <table class="table m-0">
+                            <thead>
+                                <tr>
+                                    <!-- Set columns width -->
+                                    <!-- <th class="text-center py-3 px-4"></th>
+                                    <th class="text-center py-3 px-4"></th>
+                                    <th class="text-right py-3 px-4"></th>
+                                    <th class="text-center py-3 px-4"></th>
+                                    <th class="text-right py-3 px-4"></th>
+                                    <th class="text-center align-middle py-3 px-0" style="width: 40px;"><a href="#"
+                                            class="shop-tooltip float-none text-light" title=""
+                                            data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a>
+                                    </th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                                <tr>
+                                    <td class="p-4">
+                                        <div class="media align-items-center">
+                                            <img src="/{{row['image']}}" width="130"
+                                                height="130" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                            <div class="media-body">
+                                                <!-- <a href="#" class="d-block text-dark">Product 1</a> -->
+                                                <!-- <small>
+                                    <span class="text-muted">Color:</span>
+                                    <span class="ui-product-color ui-product-color-sm align-text-bottom" style="background:#e81e2c;"></span> &nbsp;
+                                    <span class="text-muted">Size: </span> EU 37 &nbsp;
+                                    <span class="text-muted">Ships from: </span> China
+                                  </small> -->
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right font-weight-semibold align-middle p-4 w-25">{{row['cat_name']}}</td>
+                                    <td class="text-right font-weight-semibold align-middle p-4 w-25">{{row['item_name']}}</td>
+                                    <!-- <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td> -->
+                                    <td class="text-right font-weight-semibold align-middle p-4 w-25">₹ {{row['price']}}</td>
+                                    <td class="text-center align-middle px-0 w-25">
+                                        <a href="?action=remove&cmid={{ row['cart_master_id'] }}&ccid={{ row['cart_child_id'] }}&price={{ row['sell_price'] }}"
+                                        name="remove" class="text-muted">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="text-danger bi bi-trash-fill"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                        </svg>
+                                    </a>
+                                    </td>
+                                </tr>
+        
+                            </tbody>
+                        </table>
+                        {% endfor %}
+                    </div>
+                    <!-- / Shopping cart table -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center pb-2">
+                        <div class="mt-4">
+                            <label class="text-muted font-weight-normal"></label>
+                            <!-- <input type="text" placeholder="ABC" class="form-control"> -->
+                        </div>
+                        <div class="d-flex">
+                            <!-- <div class="text-right mt-4 mr-5">
+                          <label class="text-muted font-weight-normal m-0">Discount</label>
+                          <div class="text-large"><strong>$20</strong></div>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right mt-4">
+                        <h5 class="text-muted font-weight-normal m-0">Total price: &ensp;<span class="text-large text-dark fw-bold">₹ {{ data['view'][0]['tot_amt']}}</span></h5>
+                        <!-- <div class="text-large"><strong>₹{{ data['view'][0]['tot_amt']}}</strong></div> -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">
+                        {% if data['flag']==1 %}
+                            <span class="text-danger">-  {{ data['out'] }}  -</span>
+                        {% else %}
+                        <a href="customerpayment?amt={{data['view'][0]['tot_amt']}}&cmid={{data['view'][0]['cart_master_id']}}&pcid={{data['view'][0]['pur_child_id']}}" class="btn btn-lg btn-primary mt-2 w-100">Checkout</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% include 'footer.html' %}

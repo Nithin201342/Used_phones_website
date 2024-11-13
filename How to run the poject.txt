@@ -1,0 +1,5 @@
+1) Start the xammp server
+
+2) Open "main.py" file 
+
+3) Run the code. (Top right corner)

@@ -1,0 +1,256 @@
+<body style="overflow-x: hidden">
+  <div class="row">
+    {% include 'adminheader.html' %}
+
+    <div class="col">
+      <nav class="navbar bg-light sticky-top user-select-none" style="height: 70px; padding-left: 0vh !important">
+        <div class="container-fluid">
+          <span class="h3 text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5z" />
+            </svg>
+            <span class="align-middle">Category Details</span>
+          </span>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      {% if data['up'] %}
+
+      <section class="vh-100 user-select-none">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex">
+            <div class="col p-5">
+              <form action="" method="post" class="needs-validation" novalidate>
+                <!--<div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-facebook-f"></i>
+                        </button>
+            
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-twitter"></i>
+                        </button>
+            
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-linkedin-in"></i>
+                        </button>
+                      </div>
+            
+                      <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                      </div>-->
+                <p class="display-6 fw-bold mb-4 me-3">Update Category</p>
+                <!-- Name input -->
+                <div class="form-outline form-floating mb-4">
+                  <input type="text" value="{{data['up'][0]['cat_name']}}" id="form3Example3" name="cate"
+                    class="form-control form-control-lg" placeholder="Enter a name" required />
+                  <label class="form-label" for="form3Example3">Category name</label>
+                  <div class="invalid-feedback">Please enter a name</div>
+                </div>
+
+                <!-- Description input -->
+                <div class="row">
+                  <div class="form-outline form-floating mb-4 col">
+                    <input type="text" value="{{data['up'][0]['cat_desc']}}" id="form3Example3" name="desc"
+                      class="form-control form-control-lg" placeholder="Enter description" required />
+                    <label class="form-label px-4" for="form3Example3">Description</label>
+                    <div class="invalid-feedback">Please enter a description</div>
+                  </div>
+
+                  <!--<div class="d-flex justify-content-between align-items-center">-->
+                  <!-- Checkbox -->
+                  <!--<div class="form-check mb-0">
+                          <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                          <label class="form-check-label" for="form2Example3">
+                            Remember me
+                          </label>
+                        </div>
+                        <a href="#!" class="text-body">Forgot password?</a>
+                      </div>-->
+
+                  <div class="text-center text-lg-start mt-4 pt-2 mb-5">
+                    <input type="submit" name="update" class="btn btn-primary btn-lg"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem" value="Update" />
+                    <!--<p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register"
+                            class="link-danger">Register</a></p>-->
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!--<div
+                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">-->
+        <!-- Copyright -->
+        <!--<div class="text-white mb-3 mb-md-0">
+                  Copyright © 2020. All rights reserved.
+                </div>-->
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <!--<div>
+                  <a href="#!" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#!" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#!" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                  </a>
+                  <a href="#!" class="text-white">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>-->
+        <!-- Right -->
+        <!--</div>-->
+      </section>
+
+      {% else %}
+      <section class="vh-100 user-select-none">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center">
+            <div class="col p-5">
+              <form action="" method="post" class="needs-validation" novalidate>
+                <!--<div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                        <p class="lead fw-normal mb-0 me-3">Sign in with</p>
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-facebook-f"></i>
+                        </button>
+            
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-twitter"></i>
+                        </button>
+            
+                        <button type="button" class="btn btn-primary btn-floating mx-1">
+                          <i class="fab fa-linkedin-in"></i>
+                        </button>
+                      </div>
+            
+                      <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0">Or</p>
+                      </div>-->
+                <p class="display-6 fw-bold mb-4 me-3">Add Category</p>
+                <!-- Name input -->
+                <div class="form-outline form-floating mb-4">
+                  <input type="text" id="form3Example3" name="cate" class="form-control form-control-lg"
+                    placeholder="Enter a name" required />
+                  <label class="form-label" for="form3Example3">Category name</label>
+                  <div class="invalid-feedback">Please enter a name</div>
+                </div>
+
+                <!-- Description input -->
+                <div class="row">
+                  <div class="form-outline form-floating mb-4 col">
+                    <input type="text" id="form3Example3" name="desc" class="form-control form-control-lg"
+                      placeholder="Enter description" required />
+                    <label class="form-label px-4" for="form3Example3">Description</label>
+                    <div class="invalid-feedback">Please enter a description</div>
+                  </div>
+
+                  <!--<div class="d-flex justify-content-between align-items-center">-->
+                  <!-- Checkbox -->
+                  <!--<div class="form-check mb-0">
+                          <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                          <label class="form-check-label" for="form2Example3">
+                            Remember me
+                          </label>
+                        </div>
+                        <a href="#!" class="text-body">Forgot password?</a>
+                      </div>-->
+
+                  <div class="text-center text-lg-start mt-4 pt-2 mb-5">
+                    <input type="submit" name="submit" class="btn btn-primary btn-lg w-100"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem" value="Proceed" />
+                    <!--<p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register"
+                            class="link-danger">Register</a></p>-->
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!--<div
+                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">-->
+        <!-- Copyright -->
+        <!--<div class="text-white mb-3 mb-md-0">
+                  Copyright © 2020. All rights reserved.
+                </div>-->
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <!--<div>
+                  <a href="#!" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#!" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#!" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                  </a>
+                  <a href="#!" class="text-white">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>-->
+        <!-- Right -->
+        <!--</div>-->
+      </section>
+      {% endif %}
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          "use strict";
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll(".needs-validation");
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener(
+              "submit",
+              function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+
+                form.classList.add("was-validated");
+              },
+              false
+            );
+          });
+        })();
+      </script>
+      <div class="p-lg-5">
+        <div class="table-responsive rounded">
+          <table class="table table-striped table-sm">
+            <thead class="text-white bg-primary">
+              <th scope="col">Sl no</th>
+              <th scope="col">Category name</th>
+              <th scope="col">Description</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </thead>
+            {% for r in data['view'] %}
+            <tr>
+              <td>{{loop.index}}</td>
+              <td>{{r['cat_name']}}</td>
+              <td class="w-50" >{{r['cat_desc']}}</td>
+              <td><a class="btn btn-primary" href="?action=update&id={{r['cat_id']}}">Update</a></td>
+              <td>
+                {% if r['status'] == 1 %}
+                <a class="btn btn-danger" href="?action=inactive&id={{r['cat_id']}}">Inactivate</a>
+                {% else %}
+                <a class="btn btn-success" href="?action=active&id={{r['cat_id']}}">Activate</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'adminfooter.html' %}
+</body>

@@ -1,0 +1,1095 @@
+# for row in ress:
+			# q="select * from tbl_item where Item_id='%s'"%(row['Item_id'])
+			# val=select(q)
+			# q="update tbl_item set Item_qty=Item_qty-'%s' where Item_id='%s'"%(row['Quantity'],row['Item_id'])
+			# update(q)
+
+		# if 'savecard' in request.form:
+		# 	savecard=request.form['savecard']
+		# 	q="select * from tbl_card where Card_no='%s'"%(cardno)
+		# 	exist=select(q)
+		# 	if exist:
+		# 		q="insert into tbl_payment values (null,'0','%s','%s',curdate())"%(cmid,exist[0]['card_id'])
+		# 		insert(q)
+		# 		q="update tbl_cart_master set Cm_status='paid' where CartMas_id='%s'"%(cmid)
+		# 		update(q)
+		# 		flash("Payment Completed!")
+		# 		return redirect(url_for("customer.cust_home"))
+		# 	else:
+		# 		q="insert into tbl_card values (null,'%s','%s','%s','%s')"%(session['cid'],cardno,name,expdate)
+		# 		crd_id=insert(q)
+		# 		q="insert into tbl_payment values (null,'0','%s','%s',curdate())"%(cmid,crd_id)
+		# 		insert(q)
+		# 		q="update tbl_cart_master set Cm_status='paid' where CartMas_id='%s'"%(cmid)
+		# 		update(q) 
+		# 		flash("Payment Completed!")
+		# 		return redirect(url_for("customer.cust_home"))
+  
+  
+  
+  
+  
+  
+  
+  
+  <section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex h-100">
+                <div class="card card-registration card-registration-2 w-75" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            {% if data['view'] %}
+                                    {% for row in data['view'] %}
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-5 w-100">
+                                        <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                        <!-- <h6 class="mb-0 text-muted">{{data['cart']}} items</h6> -->
+                                    </div>
+                                    
+                                    <div class="row mb-4 justify-content-between align-items-center">
+                                        
+                                        <hr class="my-4">
+
+
+                                        <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img src="/{{row['image']}}" class="rounded-3 img-fluid">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <h6 class="text-muted">{{row['cat_name']}}</h6>
+                                            <h6 class="text-black mb-0">{{row['item_name']}}</h6>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+
+                                            <button class="btn btn-link px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h6 class="mb-0">₹ {{row['sell_price']}}</h6>
+                                        </div>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 btn text-end">
+                                            <a href="?action=remove&cmid={{ row['cart_master_id'] }}&ccid={{ row['cart_child_id'] }}&price={{ row['sell_price'] }}"
+                                                name="remove" class="text-muted">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="text-danger bi bi-trash-fill"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+
+                                        <hr class="my-4">
+
+                                        <!-- <div class="pt-5">
+                                        <h6 class="mb-0"><a href="customerproduct" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                                    </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 bg-white h-100 w-25 " style="border-radius: 15px;">
+                    <div class="p-5">
+                        <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                        <hr class="my-4">
+
+
+                        <div class="d-flex justify-content-between mb-5">
+                            <h5 class="text-uppercase">Total price</h5>
+                            <h5>₹{{row['tot_amt']}}</h5>
+                            {% if row['p_status'] == 0 %}
+                            <span>Out Of Stock</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a href="customerpayment?amt={{data['view'][0]['tot_amt']}}&cmid={{data['view'][0]['cart_master_id']}}&pcid={{data['view'][0]['pur_child_id']}}"
+                        class="btn btn-primary btn-block btn-lg w-50"
+                        data-mdb-ripple-color="dark">Proceed to Pay</a>
+
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                          Gowree Cart
+
+                         
+{% include 'customer_header.html' %}
+<div style="margin-bottom: 1em; background:url('/static/assets/img/organic23.jpg') ; height: 300px; width: 100%; background-size: contain;" >
+    </div>
+
+
+<!-- nvhjfhjgfhhgfghf{{ data['len'] }} -->
+<form  action="" method="post">
+<div class="wrap cf">
+    <h1 class="projTitle"><span>CART</span></h1>
+    <div class="heading cf">
+      <h1>My Cart</h1>
+      <a  href="customer_view_all_product" class="continue">Continue Shopping</a>
+    </div>
+    <div class="cart">
+  <!--    <ul class="tableHead">
+        <li class="prodHeader">Product</li>
+        <li>Quantity</li>
+        <li>Total</li>
+         <li>Remove</li>
+      </ul>-->
+      <ul class="cartWrap">
+
+        {% for row in data['res'] %}
+        
+        <li class="items odd">
+          
+      <div class="infoWrap"> 
+          <div class="cartSection">
+            <input type="hidden" name="pid{{ loop.index }}" value="{{ row['product_id'] }}" id="">
+            <input type="hidden" name="single{{ loop.index }}" value="{{ row['selling_price'] }}" id="single{{ loop.index }}">
+          <img src="/{{ row['product_image'] }}"  alt="img" class="itemImg" />
+            <!-- <p class="itemNumber">#QUE-007544-002</p> -->
+            <h3>{{ row['product_name'] }}</h3>
+          
+             <p> <input readonly name="qty{{ loop.index }}" type="text" value="{{ row['quantity'] }}" id="inp{{ loop.index }}"  class="qty" /><button name="add{{ loop.index }}"  id="add{{ loop.index }}" value="add" type="submit" class="btn-up">+</button><button name="addss{{ loop.index }}"  id="addss{{ loop.index }}" value="dd" type="submit" class="btn-up">-</button></p>
+           
+
+           <p id="test{{ loop.index }}" class="stockStatus"> In Stock</p>
+             <!-- <input readonly name="availablestockdetails{{ loop.index }}"  type="text" id="availablestockdetails{{ loop.index }}"  class="qty" /> -->
+            <!-- {% if row['status'] == "active" %}
+            <p class="stockStatus"> In Stock</p>
+            {% elif row['status'] == "inactive" %}
+            <p class="stockStatus out"> Out of Stock</p>
+            {% endif %} -->
+          </div>  
+      
+          
+          <div class="prodTotal cartSection">
+            <p id="singleCost{{ loop.index }}">₹{{ row['total_price'] }}</p>
+            <input type="hidden" value="{{ row['total_price'] }}"  name="singletotal{{ loop.index }}" id="stotal{{ loop.index }}">
+          </div>
+                <div class="cartSection removeWrap">
+                  <input type="hidden"   value="{{row['order_detail_id']}}" name="orderdetails_id{{ loop.index }}">
+
+              <input type="hidden" id="ourqty{{ loop.index }}" value="{{row['quantity'] }}" name="">        
+
+              <input type="hidden" value="{{ row['stock'] }}" id="totalstock{{ loop.index }}" name="">
+
+                  
+             <button name="del{{ loop.index }}" type="submit">x</button>
+          </div>
+        </div>
+
+
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="subtotal cf">
+      <ul>
+          <input type="hidden" id="mainval" value="{{ data['val'] }}" name="" id="">
+          {% if data['res'] %}
+        
+              <li class="totalRow final"><span class="label">Total</span><span id="final" class="value">₹{{ data['res'][0]['total_amount'] }}</span></li>
+              <input type="hidden" value="{{ data['res'][0]['total_amount'] }}" name="total" id="tot">
+        <li class="totalRow">
+            <!-- <a href="?action=checkout&omid={{ data['res'][0]['ordermaster_id'] }}" class="btn continue">Checkout</a> -->
+            <input type="hidden" value="{{ data['res'][0]['order_master_id'] }}" name="om_id" id="">
+            <input class="btn continue" value="Checkout" type="submit" name="btncheckout" id="btncheckout">
+        </li>
+      {% endif %}
+    </ul>
+    </div>
+  </div>
+</form>
+
+  <style>
+
+    .btn-up{
+        padding: 4px 10px;
+        margin: 0px 2px;
+        background: transparent;
+        border: 1px solid rgb(194, 194, 194);
+    }
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:400,700);
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+
+
+html {
+  line-height: 1;
+}
+
+.items.odd:nth-child(even){
+    background: #fafafa;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Droid Serif", serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.cf:before, .cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}
+
+.wrap {
+  width: 75%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 5% 0;
+  margin-bottom: 5em;
+}
+
+.projTitle {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  padding: 1em 0;
+  border-bottom: 1px solid #dadada;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.projTitle span {
+  font-family: "Droid Serif", serif;
+  font-weight: normal;
+  font-style: italic;
+  text-transform: lowercase;
+  color: #777;
+}
+
+.heading {
+  padding: 1em 0;
+  border-bottom: 1px solid #D0D0D0;
+}
+.heading h1 {
+  font-family: "Droid Serif", serif;
+  font-size: 2em;
+  float: left;
+}
+.heading a.continue:link, .heading a.continue:visited {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -.015em;
+  font-size: .75em;
+  padding: 1em;
+  color: #fff;
+  background: #82ca9c;
+  font-weight: bold;
+  border-radius: 50px;
+  float: right;
+  text-align: right;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -ms-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+.heading a.continue:after {
+  content: "\276f";
+  padding: .5em;
+  position: relative;
+  right: 0;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+.heading a.continue:hover, .heading a.continue:focus, .heading a.continue:active {
+  background: #f69679;
+}
+.heading a.continue:hover:after, .heading a.continue:focus:after, .heading a.continue:active:after {
+  right: -10px;
+}
+
+.tableHead {
+  display: table;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: .75em;
+}
+.tableHead li {
+  display: table-cell;
+  padding: 1em 0;
+  text-align: center;
+}
+.tableHead li.prodHeader {
+  text-align: left;
+}
+
+.cart {
+  padding: 1em 0;
+}
+.cart .items {
+  display: block;
+  width: 100%;
+  vertical-align: middle;
+  padding: 1.5em;
+  border-bottom: 1px solid #fafafa;
+}
+.cart .items.even {
+  background: #fafafa;
+}
+.cart .items .infoWrap {
+  display: table;
+  width: 100%;
+}
+.cart .items .cartSection {
+  display: table-cell;
+  vertical-align: middle;
+}
+.cart .items .cartSection .itemNumber {
+  font-size: .75em;
+  color: #777;
+  margin-bottom: .5em;
+}
+.cart .items .cartSection h3 {
+  font-size: 1em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+}
+.cart .items .cartSection p {
+  display: inline-block;
+  font-size: .85em;
+  color: #777777;
+  font-family: "Montserrat", sans-serif;
+}
+.cart .items .cartSection p .quantity {
+  font-weight: bold;
+  color: #333;
+}
+.cart .items .cartSection p.stockStatus {
+  color: #82CA9C;
+  font-weight: bold;
+  padding: .5em 0 0 1em;
+  text-transform: uppercase;
+}
+.cart .items .cartSection p.stockStatus.out {
+  color: #F69679;
+}
+.cart .items .cartSection .itemImg {
+  width: 7rem !important;
+  height: 5rem;
+
+  float: left;
+}
+.cart .items .cartSection.qtyWrap, .cart .items .cartSection.prodTotal {
+  text-align: center;
+}
+.cart .items .cartSection.qtyWrap p, .cart .items .cartSection.prodTotal p {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+.cart .items .cartSection input.qty {
+  width: 2em;
+  text-align: center;
+  font-size: 1em;
+  padding: .25em;
+  margin: 1em .5em 0 0;
+}
+.cart .items .cartSection .itemImg {
+  width: 8em;
+  display: inline;
+  padding-right: 1em;
+}
+
+.special {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+}
+.special .specialContent {
+  padding: 1em 1em 0;
+  display: block;
+  margin-top: .5em;
+  border-top: 1px solid #dadada;
+}
+.special .specialContent:before {
+  content: "\21b3";
+  font-size: 1.5em;
+  margin-right: 1em;
+  color: #6f6f6f;
+  font-family: helvetica, arial, sans-serif;
+}
+
+a.remove {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+  font-weight: bold;
+  background: #e0e0e0;
+  padding: .5em;
+  font-size: .75em;
+  display: inline-block;
+  border-radius: 100%;
+  line-height: .85;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -ms-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+a.remove:hover {
+  background: #f30;
+}
+
+.promoCode {
+  border: 2px solid #efefef;
+  float: left;
+  width: 35%;
+  padding: 2%;
+}
+.promoCode label {
+  display: block;
+  width: 100%;
+  font-style: italic;
+  font-size: 1.15em;
+  margin-bottom: .5em;
+  letter-spacing: -.025em;
+}
+.promoCode input {
+  width: 85%;
+  font-size: 1em;
+  padding: .5em;
+  float: left;
+  border: 1px solid #dadada;
+}
+.promoCode input:active, .promoCode input:focus {
+  outline: 0;
+}
+.promoCode a.btn {
+  float: left;
+  width: 15%;
+  padding: .75em 0;
+  border-radius: 0 1em 1em 0;
+  text-align: center;
+  border: 1px solid #82ca9c;
+}
+.promoCode a.btn:hover {
+  border: 1px solid #f69679;
+  background: #f69679;
+}
+
+.btn:link, .btn:visited {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -.015em;
+  font-size: 1em;
+  padding: 1em 3em;
+  color: #fff;
+  background: #82ca9c;
+  font-weight: bold;
+  border-radius: 50px;
+  float: right;
+  text-align: right;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -ms-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+.btn:after {
+  content: "\276f";
+  padding: .5em;
+  position: relative;
+  right: 0;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+.btn:hover, .btn:focus, .btn:active {
+  background: #f69679;
+}
+.btn:hover:after, .btn:focus:after, .btn:active:after {
+  right: -10px;
+}
+.promoCode .btn {
+  font-size: .85em;
+  padding: .5em 2em;
+}
+
+/* TOTAL AND CHECKOUT  */
+.subtotal {
+  float: right;
+  width: 35%;
+}
+.subtotal .totalRow {
+  padding: .5em;
+  text-align: right;
+}
+.subtotal .totalRow.final {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.subtotal .totalRow span {
+  display: inline-block;
+  padding: 0 0 0 1em;
+  text-align: right;
+}
+.subtotal .totalRow .label {
+  font-family: "Montserrat", sans-serif;
+  font-size: .85em;
+  text-transform: uppercase;
+  color: #777;
+}
+.subtotal .totalRow .value {
+  letter-spacing: -.025em;
+  width: 35%;
+}
+
+@media only screen and (max-width: 39.375em) {
+  .wrap {
+    width: 98%;
+    padding: 2% 0;
+  }
+
+  .projTitle {
+    font-size: 1.5em;
+    padding: 10% 5%;
+  }
+
+  .heading {
+    padding: 1em;
+    font-size: 90%;
+  }
+
+  .cart .items .cartSection {
+    width: 90%;
+    display: block;
+    float: left;
+  }
+  .cart .items .cartSection.qtyWrap {
+    width: 10%;
+    text-align: center;
+    padding: .5em 0;
+    float: right;
+  }
+  .cart .items .cartSection.qtyWrap:before {
+    content: "QTY";
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    padding: .25em;
+    font-size: .75em;
+  }
+  .cart .items .cartSection.prodTotal, .cart .items .cartSection.removeWrap {
+    display: none;
+  }
+  .cart .items .cartSection .itemImg {
+    width: 25%;
+  }
+
+  .promoCode, .subtotal {
+    width: 100%;
+  }
+
+  a.btn.continue {
+    width: 100%;
+    text-align: center;
+  }
+}
+  </style>
+
+  <script>
+    // Remove Items From Cart
+// $('a.remove').click(function(){
+//   event.preventDefault();
+//   $( this ).parent().parent().parent().hide( 400 );
+ 
+// })
+
+// // Just for testing, show all items
+//   $('a.btn.continue').click(function(){
+//     $('li.items').show(400);
+//   })
+
+//   var quantity = {
+//     type: "add",
+//     };
+ 
+//     var quantity2 = {
+//     type: "remove",
+//     };
+
+
+
+//   const changeQuantity  = (q) => {
+
+//     var val = document.getElementById("mainval").value
+//     var id = document.querySelector(".qty").id
+//     console.log(id);
+
+//     for (i=1;i<=val;i++){
+//         // alert(i)
+//         var buttons = document.getElementById("add"+i)
+//         alert(buttons)
+//         // var buttons = document.getElementById("dec"+i).value
+//         // alert(buttons)
+//         buttons.addEventListener("click",()=> {
+//             alert("clicked")
+//         })
+//     }
+
+    
+
+//     // 
+
+//     var inp = document.getElementById("inp").value
+//     if (q.type == "add"){
+//         console.log(inp);
+//         document.getElementById("inp"+val).value=parseInt(inp)+1
+//     }
+//     else if (q.type == "remove"){
+//         console.log("remove");
+//         if (inp != 1){
+            
+//             document.getElementById("inp").value=parseInt(inp)-1
+//         }
+//     }
+                    
+  
+// }
+
+function defaultValue(q) {
+            document.getElementById("tot").value=(document.getElementById("final").innerText).slice(1,)
+            document.getElementById("single"+q).value=(document.getElementById("singlecost"+q).innerText).slice(1,)
+}
+
+
+// function samplefna(q){
+//     // console.log(q);
+//   checkQty()
+//             var inp = document.getElementById("inp"+q).value
+//             document.getElementById("inp"+q).value=parseInt(inp)+1
+         
+
+//             var t = document.getElementById("singleCost"+q).innerText
+//             var tot = t.slice(1,)
+//             var singleCost = document.getElementById("single"+q).value
+//             // alert(singleCost)
+
+//             var sum = parseInt(tot) + parseInt(singleCost)
+//             document.getElementById("singleCost"+q).innerText = "₹"+sum
+
+//             // var f = 
+//             // var final = f.slice(1,)
+
+
+//             var limit = document.getElementById("mainval").value
+//             // console.log(limit);
+           
+//             var checkoutTotal = 0
+//             // console.log(newtotal);
+
+//             for(i=1;i<=limit;i++){
+
+
+//                 var abc = document.getElementById("singleCost"+i).innerText
+//                 var newtotal = abc.slice(1,)
+//                 // alert(newtotal)
+//                 checkoutTotal=parseInt(newtotal)+checkoutTotal
+                
+//             }
+//             document.getElementById("final").innerText="₹"+checkoutTotal
+//             // console.log(document.getElementById("singleCost"+q).innerText.slice(1,))
+//             document.getElementById("tot").value=(document.getElementById("final").innerText).slice(1,)
+//             document.getElementById("stotal"+q).value=document.getElementById("singleCost"+q).innerText.slice(1,)
+      
+// }
+
+// function samplefnd(q){
+//   checkQty()
+//      var inp = document.getElementById("inp"+q).value
+//      if (inp != 1){
+            
+//             document.getElementById("inp"+q).value=parseInt(inp)-1
+//             var t = document.getElementById("singleCost"+q).innerText
+//             var tot = t.slice(1,)
+//             console.log(tot);
+//             var singleCost = document.getElementById("single"+q).value
+//             console.log(singleCost);
+
+//             var diff = parseInt(tot) - parseInt(singleCost)
+//             document.getElementById("singleCost"+q).innerText = "₹"+diff
+
+//             var limit = document.getElementById("mainval").value
+//             // console.log(limit);
+           
+//             var checkoutTotal = 0
+//             // console.log(newtotal);
+
+//             for(i=1;i<=limit;i++){
+
+
+//                 var abc = document.getElementById("singleCost"+i).innerText
+//                 var newtotal = abc.slice(1,)
+//                 // alert(newtotal)
+//                 checkoutTotal=parseInt(newtotal)+checkoutTotal
+                
+//             }
+//             document.getElementById("final").innerText="₹"+checkoutTotal
+//             document.getElementById("tot").value=(document.getElementById("final").innerText).slice(1,)
+//             document.getElementById("stotal"+q).value=document.getElementById("singleCost"+q).innerText.slice(1,)
+//         }
+    
+//  }
+
+
+
+
+
+
+ // <input type="hidden" value="{{ data['len'] }}" id="count" name="">
+
+
+  // var count = document.getElementById("count").value
+  var count = document.getElementById("mainval").value
+  var test = 0;
+  for (i=1; i<=count; i++){
+
+      var ourQty = document.getElementById("ourqty"+i)
+      var TotalQty = document.getElementById("totalstock"+i)
+     console.log("Our Quantity: ",ourQty.value)
+      console.log("Total Quantity: ",TotalQty.value)
+      if ( parseInt(ourQty.value) > parseInt(TotalQty.value) ){
+          console.log("out of stock")
+          // document.getElementById("availablestockdetails"+i).value="Out of stock"
+          document.getElementById('test'+i).innerHTML = "Out of stock";
+          // document.getElementById("btncheckout").style.visibility= 'hidden';
+          test = 1; 
+        }else{
+          console.log("in stock") 
+          document.getElementById('test'+i).innerHTML = "In stock";
+          // document.getElementById("availablestockdetails"+i).value="In stock"
+          // document.getElementById("btncheckout").style.visibility= 'visible';
+
+          }
+        if(test==1)
+        {
+          document.getElementById("btncheckout").style.visibility= 'hidden';
+        }
+          
+              }
+
+      
+
+
+      function checkQty(){
+        var count = document.getElementById("mainval").value
+  var test = 0;
+  for (i=1; i<=count; i++){
+      var ourQty = document.getElementById("ourqty"+i)
+      var TotalQty = document.getElementById("totalstock"+i)
+     console.log("Our Quantity: ",ourQty.value)
+      console.log("Total Quantity: ",TotalQty.value)
+      if ( parseInt(ourQty.value) > parseInt(TotalQty.value) ){
+          console.log("out of stock")
+          // document.getElementById("availablestockdetails"+i).value="Out of stock"
+          document.getElementById('test'+i).innerHTML = "Out of stock";
+          alert('test'+i)
+          test = 1; 
+        }else{
+          console.log("in stock") 
+          document.getElementById('test'+i).innerHTML = "In stock";
+          // document.getElementById("availablestockdetails"+i).value="In stock"
+          // document.getElementById("btncheckout").style.visibility= 'visible';
+      
+      }
+      if(test==1)
+      {
+        document.getElementById("btncheckout").style.visibility= 'hidden';
+      }
+    }
+  }
+  </script>
+
+  {% include 'footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+
+      <!-- Favicons -->
+  <link href="/static/assets/css/login.css" rel="stylesheet" />
+  <link href="/static/assets/img/favicon.png" rel="icon" />
+  <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Template Main CSS File -->
+  <link href="/static/assets/css/style.css" rel="stylesheet" />
+
+  <style>
+    #header {
+        background: #fff;
+        transition: all 0.5s;
+        z-index: 997;
+        height: 86px;
+      }
+</style>
+
+</head>
+
+<body class="user-select-none">
+    <div class="card">
+        <div class="card-body">
+            <div class="container mb-5 mt-3">
+                <div class="row d-flex align-items-baseline">
+                    <div class="col-xl-9">
+                        <!-- <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #123-123</strong></p> -->
+                    </div>
+                    <div class="col-xl-3 float-end">
+                        <!-- <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
+                                class="fas fa-print text-primary"></i> Print</a>
+                        <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
+                                class="far fa-file-pdf text-danger"></i> Export</a> -->
+                    </div>
+                    <header id="header" class="d-flex align-items-center">
+                    <h1 class="logo" style="margin-left: 550px;">
+                        <a href="customerhome">MobiLand<span>.</span></a>
+                    </h1>
+                    </header>
+                    <hr>
+                </div>
+
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
+                            <p>
+                                A108 Adam Street <br>
+                                New York, NY 535022<br>
+                                United States <br><br>
+                                <strong>Phone:</strong> +91 9400 737 266<br>
+                                <strong>Email:</strong> mobiland@gmail.com<br>
+                            </p>
+                            <!-- <p class="pt-0">MDBootstrap.com</p> -->
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <ul class="list-unstyled">
+                                <li class="text-muted">To: <span style="color:#5d9fc5 ;">John Lorem</span></li>
+                                <li class="text-muted">Street, City</li>
+                                <li class="text-muted">State, Country</li>
+                                <li class="text-muted"><i class="fas fa-phone"></i> 123-456-789</li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-4">
+                            <p class="text-muted">Invoice</p>
+                            <ul class="list-unstyled">
+                                <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                                        class="fw-bold">ID:</span>#123-456</li>
+                                <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                                        class="fw-bold">Purchase Date: </span>Jun 23,2021</li>
+                                <!-- <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
+                                        class="me-1 fw-bold">Status:</span><span
+                                        class="badge bg-warning text-black fw-bold">
+                                        paid</span></li> -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row my-2 mx-1 justify-content-center">
+                        <table class="table table-striped table-borderless">
+                            <thead style="background-color:#84B0CA ;" class="text-white">
+                                <tr>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Pro Package</td>
+                                    <td>4</td>
+                                    <td>$200</td>
+                                    <td>$800</td>
+                                </tr>
+                                <tr>
+                                    <td>Web hosting</td>
+                                    <td>1</td>
+                                    <td>$10</td>
+                                    <td>$10</td>
+                                </tr>
+                                <tr>
+                                    <td>Consulting</td>
+                                    <td>1 year</td>
+                                    <td>$300</td>
+                                    <td>$300</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <!-- <p class="ms-3">Add additional notes and payment information</p> -->
+
+                        </div>
+                        <div class="col-xl-3">
+                            <!-- <ul class="list-unstyled">
+                                <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li>
+                                <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li>
+                            </ul> -->
+                            <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                                    style="font-size: 25px;">$1221</span></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xl-10">
+                            <p>Thank you for your purchase.....</p>
+                        </div>
+                        <!-- <div class="col-xl-2">
+                            <button type="button" class="btn btn-primary text-capitalize"
+                                style="background-color:#60bdf3 ;">Pay Now</button>
+                        </div> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

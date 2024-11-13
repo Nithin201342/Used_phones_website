@@ -1,0 +1,88 @@
+{% include 'publicheader.html' %}
+
+<section style="background-color: #eee;">
+    {% for row in data['productsearch'] %}
+
+    <div class="container py-2">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-12 col-xl-10">
+                <div class="card shadow-0 border rounded-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                    <img src="/{{row['image']}}"
+                                        class="w-100" />
+                                    <a href="#!">
+                                        <div class="hover-overlay">
+                                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <h5 class="text-bolder">{{row['item_name']}}</h5>
+                                <br>
+                                <!-- <div class="d-flex flex-row">
+                                    <div class="text-danger mb-1 me-2">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span>310</span>
+                                </div>
+                                <div class="mt-1 mb-0 text-muted small">
+                                    <span>100% cotton</span>
+                                    <span class="text-primary"> • </span>
+                                    <span>Light weight</span>
+                                    <span class="text-primary"> • </span>
+                                    <span>Best finish<br /></span>
+                                </div>
+                                <div class="mb-2 text-muted small">
+                                    <span>Unique design</span>
+                                    <span class="text-primary"> • </span>
+                                    <span>For men</span>
+                                    <span class="text-primary"> • </span>
+                                    <span>Casual<br /></span>
+                                </div> -->
+                                <!-- <input type="date" min="{{data['today']}}"> -->
+                                <div class="mb-2 text-muted small">
+                                    <label>Category: </label><span> {{row['cat_name']}}</span>
+                                </div>
+                                <div class="mb-2 text-muted small">
+                                    <label>Brand: </label><span> {{row['brand_name']}}</span>
+                                </div>
+                                <p class="text-truncate mb-4 mb-md-0">
+                                    {{row['item_desc']}}
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                <div class="d-flex flex-row align-items-center mb-1">
+                                    <span>₹</span><h4 class="mb-1 me-1">{{row['sell_price']}}</h4>
+                                    <!-- <span class="text-danger"><s>$799</s></span> -->
+                                </div>
+                                <h6 class="text-success">Free shipping</h6>
+                                <div class="d-flex flex-column mt-4">
+                                    <!-- <a name="det" href="?action=details&pid={{ data['productsearch'][0]['item_id'] }}&pcid={{ data['productsearch'][0]['pur_child_id'] }}" class="btn btn-primary btn-sm">Details</a> -->
+                                    <a name="det" href="login" class="btn btn-primary btn-sm">Details</a>
+                                    <!-- <a  name="btn" href="?action=cart&amount={{ data['productsearch'][0]['sell_price'] }}&pid={{ data['productsearch'][0]['item_id'] }}&pcid={{ data['productsearch'][0]['pur_child_id'] }}" class="btn btn-outline-primary btn-sm mt-2">Add to cart</a> -->
+                                    <a  name="btn" href="login" class="btn btn-outline-primary btn-sm mt-2">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <center>
+        <div class="text-muted"> - No Product's Arrived Yet! -</div>
+    </center>
+
+    {% endfor %}
+</section>
+
+{% include 'footer.html' %}

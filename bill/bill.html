@@ -1,0 +1,105 @@
+<head>
+
+	<script>
+		function displayDateTime() {
+			var today = new Date();
+			var date = today.toDateString();
+			var time = today.toLocaleTimeString();
+			document.getElementById("datetime").innerHTML = date + " " + time;
+		}
+	</script>
+</head>
+		<body onload="printDiv(); displayDateTime();">
+    <div id="div_print" >
+        <center>
+            <link rel="stylesheet" href="static/assets/css/style-starter.css">
+            <font style="font-family:times new roman">
+            <h1 style="color:#FFE5B4;"><b>Lab Equipment Store<b></h1>
+                <p>
+                    LES Private Limited ,
+                    near panampilly park,
+                    kadavanthara 682020 <br><br>
+                          <strong>Phone:</strong> +911234567890<br> 
+                          <strong>Email:</strong> leslabstore@mail.com<br> 
+                        </p> 
+            <h1 style="font-size: 60px;">INVOICE</h1><br><br><br>
+            <!-- <h1>View Sales</h1> -->
+<!-- <table border=1 class="table table-secondary table-striped " style="width: 1000px;color: black;background:white;opacity: 0.85;"> -->
+    <div class="margin-top:30px">
+    <tr>
+      <th>Bill No:</th>
+      <td><span id="bill-number"></span></td>
+    </tr><br>
+  
+    <tr>
+        <th>Customer NAME:</th>
+        <TD>{{data['pay'][0]['customer_fname']}}{{data['pay'][0]['c_lname']}}</TD><br>
+    </tr>
+    <tr>
+        <th>PHONE NUMBER:</th>
+        <TD>{{data['pay'][0]['customer_phone']}}</TD>
+    </tr><br>
+    
+    <tr>
+      <th> BILL DATE AND TIME: </th>
+      <TD><span id="datetime"></span></TD>
+    </tr> 
+<!-- </table> -->
+</div>
+    <table border=1 class="table table-secondary table-striped " style="width: 1000px;color: black;background:white;opacity: 0.85;">
+
+
+      <script>
+        var billNumber = Math.floor(Math.random() * 1000000) + 1;
+        document.getElementById("bill-number").innerHTML = billNumber;
+      </script>
+
+
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script>
+        <TH>PRODUCT</TH>
+		<TH>PAYMENT DATE</TH>
+		<th>QUANTITY</th>
+		
+    <th>PAYMENT STATUS</th>
+    
+            </tr>
+		{% for row in data['pay']%}
+	<tr>
+		<td>{{row['item_name']}}</td>
+		<td>{{row['date']}}</td>
+		<td>{{row['quantity']}}</td>
+		
+    <td>Paid</td>
+            </tr>
+            {% endfor %}
+            <td colspan="4" align="right">Total Price:{{data['pay'][0]['total_amount']}}</td>
+    </table></font></center></div>
+
+<script> 
+    function printDiv() { 
+      var divContents = document.getElementById("div_print").innerHTML; 
+      var a = window.open('', '', 'height=500, width=500'); 
+      a.document.write(divContents); 
+      a.document.close(); 
+      a.print(); 
+    } 
+  </script>
+
+  <p style="padding-left: 1000px;color: black;font-family:times new roman"><b>Authorised Signature</b></p>
+            <img style="padding-left: 1000px;" src="static/image/signature.jpg" height="100">
+
+
+
+<style>
+    body{
+        background: #FFE5B4;
+    }
+</style>

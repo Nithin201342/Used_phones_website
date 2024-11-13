@@ -1,0 +1,18 @@
+adminproduct
+.update not working
+.active inactive not working
+
+adminpurchase
+.remove complete purchase process
+
+COMMON CORRECTIONS
+.customer,purchase,staff,sales search
+.customer,purchase,staff,sales report
+.In cart (purchase child id) issue
+
+
+DOCUMENT
+.table corrections
+
+
+
