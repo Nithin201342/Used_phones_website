@@ -2,4 +2,4 @@
 
 2) Open "main.py" file 
 
-3) Run the code. (Top right corner)
+3) Run the code. (Top right corner in vs code)
